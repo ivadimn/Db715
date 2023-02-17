@@ -1,5 +1,5 @@
 import tkinter as tk
-from child_window import ChildWindow
+from ui.child_window import ChildWindow
 
 
 class MainWindow(tk.Frame):
@@ -10,8 +10,8 @@ class MainWindow(tk.Frame):
         self.init_toolbar()
 
     def init_window(self, title: str, width: int, height: int, resizeble=(True, True), icon=None):
-        sw = self.root.winfo_screenwidth()
-        sh = self.root.winfo_screenheight()
+        sw = self.winfo_screenwidth()
+        sh = self.winfo_screenheight()
         x = (sw - width) // 2
         y = (sh - height) // 2
         self.root.title(title)
@@ -24,7 +24,10 @@ class MainWindow(tk.Frame):
     def init_toolbar(self):
         toolbar = tk.Frame(bg="#d7d8e0", bd=2)
         toolbar.pack(side=tk.TOP, fill=tk.X)
-        #self.add_img =
+        self.add_img = tk.PhotoImage(file="add.gif")
+        btn_open_dialog = tk.Button(toolbar, text="Добавить", command=self.open_dialog, bg="#d7d8e0",
+                                    bd=0, compound=tk.TOP, image=self.add_img)
+        btn_open_dialog.pack(side=tk.LEFT)
 
     def run(self):
         self.root.mainloop()
